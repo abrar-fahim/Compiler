@@ -1,0 +1,26 @@
+float main() {
+
+int a[5], b, c;
+
+float d;
+
+a[4] = print();
+
+a =d[3];
+
+
+
+int a;
+
+efg = 100;
+
+if(a < b) {
+cd = 45;
+}
+else {
+r = f;
+}
+
+return 0;
+
+}

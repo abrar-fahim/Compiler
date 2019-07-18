@@ -1,0 +1,10 @@
+bison -d -y parser5.y
+echo '1'
+g++ -w -c -o y.o y.tab.c
+echo '2'
+flex scanner4.l
+echo '3'
+g++ -w -c -o l.o lex.yy.c
+echo '4'
+g++ -o a.out y.o l.o -ll -ly
+./a.out input.txt log.txt output.txt
