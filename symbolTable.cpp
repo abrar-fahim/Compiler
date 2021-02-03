@@ -13,6 +13,8 @@ using namespace std;
 
 #include "SymbolInfo.cpp"
 
+extern FILE* parserLog;
+
 
 using namespace std;
 
@@ -336,11 +338,15 @@ public:
         ScopeTable* table = new ScopeTable(size);
         table -> setParentTable(currentScopeTable);
         currentScopeTable = table;
+        
+        fprintf(parserLog, "New scopetable with id %d created\n", currentScopeTable -> getId());
 
         cout << "New scopetable with id " << currentScopeTable -> getId() << " created" << endl;
     }
 
     void exitScope() {
+        
+        fprintf(parserLog, "scopetable with id %d removed\n", currentScopeTable -> getId());
 
         cout << "scopetable with id " << currentScopeTable -> getId() << " removed" << endl;
 

@@ -1,0 +1,12 @@
+bison -d -y parser.y
+echo 'parser t.tab.c generated'
+g++ -w -c -o y.o y.tab.c
+echo 'parser file created'
+flex scanner.l
+echo 'scanner lex.yy.c generated'
+g++ -w -c -o l.o lex.yy.c
+echo 'scanner file created'
+g++ -o a.out y.o l.o -ll -ly
+./a.out input.c log.txt output.txt
+echo 'output generated'
+echo 'DONE!'

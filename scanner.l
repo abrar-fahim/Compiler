@@ -79,7 +79,7 @@ string inputString;
 }
 
 [0-9]+	{
-    yylval.symbolInfo = new SymbolInfo(yytext,"CONST_INT", "INT");
+    yylval.symbolInfo = new SymbolInfo(yytext,"CONST_INT", "int");
     return CONST_INT;
     }
 
@@ -101,7 +101,7 @@ string inputString;
 }
 
 [0-9]*[\.]?[0-9]+([Ee]?[0-9]+)? {
-    yylval.symbolInfo = new SymbolInfo(yytext,"CONST_FLOAT", "FLOAT");
+    yylval.symbolInfo = new SymbolInfo(yytext,"CONST_FLOAT", "float");
     //yylval.floatVal = atof(yytext);
     return CONST_FLOAT;
     
@@ -276,7 +276,7 @@ string inputString;
 
 [+-] {
     yylval.symbolInfo = new SymbolInfo(yytext,"ADDOP");
-    //yylval.lexeme = yytext;
+    //yylval.lexeme = yyext;
     return ADDOP;
 	
 		}

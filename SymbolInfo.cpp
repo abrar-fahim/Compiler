@@ -16,21 +16,18 @@ class SymbolInfo {
     bool isArray;
     bool isFunction;
     vector<string> parameters;
+    bool isDeclaration; //stores if this symbolInfo object is a function declaration, rather than a definition
+    
     
     public:
+    string code;//added for code generation
     
     SymbolInfo() {
         next = nullptr;
         dataType = "";
+        dataType = "none";
     }
-    
-    //        SymbolInfo(const char* name,const char* type) {
-    //            std::string newName(name);
-    //            std::string newType(type);
-    //            SymbolInfo::name = newName;
-    //            SymbolInfo::type = newType;
-    //            next = nullptr;
-    //        }
+
     
     SymbolInfo(SymbolInfo* symbol) {
         //this func is used in parser in $$ = new SymbolInfo($1) scenarios
@@ -38,17 +35,21 @@ class SymbolInfo {
         SymbolInfo::type = symbol -> getType();
         SymbolInfo::dataType = symbol -> getDataType();
         next = nullptr;
+       
+        SymbolInfo::parameters = symbol -> getParameters();
         
         SymbolInfo::isArray = symbol -> getIsArray();
         SymbolInfo::isFunction = symbol -> getIsFunction();
-        size = 1;
+        SymbolInfo::isDeclaration = symbol -> getIsDeclaration();
+        SymbolInfo::size = symbol -> size;
+        SymbolInfo::code = symbol -> code;
     }
     
     SymbolInfo(string name,string type) {
         SymbolInfo::name = name;
         SymbolInfo::type = type;
         next = nullptr;
-        dataType = "";
+        dataType = "none";
         size = 1;
     }
     
@@ -60,12 +61,24 @@ class SymbolInfo {
         size = 1;   //1 means element, >1 means array
     }
     
+    void setIsDeclaration(bool in) {
+        isDeclaration = in;
+    }
+    
+    
+    bool getIsDeclaration() {
+        return isDeclaration;
+    }
     void addParameter(string dataType) {
         parameters.push_back(dataType);
     }
     
+    void setParameters(vector<string> parameters) {
+        SymbolInfo::parameters = parameters;
+    }
+    
     vector<string> getParameters() {
-        
+        return parameters;
     }
     
     
